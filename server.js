@@ -6,6 +6,7 @@ const path = require('path');
 
 // Route files
 const photos = require('./routes/photos');
+const uploadRouter = require('./routes/upload');
 
 // Load env vars
 dotenv.config({ path: './config/config.env' });
@@ -19,6 +20,23 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
+
+// Body Parser Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+//Set static folder
+app.use(express.static(path.join(__dirname, 'public' )));
+
+app.set('view engine', 'ejs');
+
+//Homepage route
+app.get('/', async function (req, res) {
+    await res.render('index');
+});
+
+app.use('/upload', uploadRouter);
+
 //Mount routers
 app.use('/api/v1/photos', photos);
 

@@ -9,6 +9,7 @@ config
 
 # production
 /build
+/public/images/*
 
 # misc
 /scripts
