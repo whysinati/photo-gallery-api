@@ -2,17 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
     <title>Upload</title>
 </head>
 <body>
     <p>IMAGE Upload</p>
-    <br>
-    <form method="post" action="upload/post" enctype="multipart/form-data">
+
+    <!-- <form method="post" action="upload/post" enctype="multipart/form-data"> -->
+    <form method="post" action="post" enctype="multipart/form-data">
         <label for="title">Title</label>
-        <input type="text" name="title" /><br />
+        <input type="text" name="title" />
+
+        <label for="description">Description</label>
+        <input type="text" name="description" />
+        <label for="category">Category</label>
+        <select type="dropdown" name="category">
+            <option name="category" id="a" value="">Choose..</option>
+            <option name="category" id="b" value="headshots">Headshot</option>
+            <option name="category" id="c" value="street">Street Photos</option>
+            <option name="category" id="d" value="fashion">Fashion</option>
+        </select>
+        
+
         <label for="image">Attach</label>
-        <input type="file" name="image" /><br /><br />
+        <input type="file" name="image" accept="image/*" />
         <button type="submit" name="upload">Upload</button>
       </form>
+
+      <!-- <img id="photo" src='/images/a7b63fb3-3bb4-4fb5-89e0-39317d6ff629.png'></img> -->
+      <img id="photo" src='<%= pic %>'></img>
+      
+
 </body>
 </html>
