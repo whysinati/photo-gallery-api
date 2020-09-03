@@ -1,10 +1,8 @@
 const express = require('express');
-const path = require('path');
-//const { uploadPhoto } = require('../controllers/upload');
+const { uploadPhoto } = require('../controllers/upload');
 
 const uploadRouter = express.Router();
 const upload = require('../middleware/uploader');
-const Resize = require('../Resize');
 const photos = require('../Photos.js');
 
 // uploadRouter.get('/home', async function (req, res) {
@@ -22,23 +20,9 @@ uploadRouter.get('/home', (req, res) => {
 uploadRouter.get('/', (req, res) => res.json(photos)); 
 // at localhost/upload
 
-// //attach the method
-// uploadRouter
-//   .route('/post')
-//   .post(upload.single('image'), uploadPhoto);
-
-// Upload New Photo
-uploadRouter.post('/post', upload.single('image'), async (req, res) => {
-    // const imagePath = path.join(__dirname, '/public/images'); //no longer the right directory level
-  const __parent__dirname = path.normalize(path.join(__dirname, '/..')); //go up a directory level
-  const imagePath = path.join(__parent__dirname, '/public/images');
-  const fileUpload = new Resize(imagePath);
-  if (!req.file) {
-    res.status(401).json({error: 'Please provide an image'});
-  }
-  const filename = await fileUpload.save(req.file.buffer);
-  
-  return res.status(200).json({ title: req.body.title, name: filename, category: req.body.category, description: req.body.description });
-});
+//attach the controller method
+uploadRouter
+  .route('/post')
+  .post(upload.single('image'), uploadPhoto);
 
 module.exports = uploadRouter;
