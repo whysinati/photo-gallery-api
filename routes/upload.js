@@ -13,7 +13,7 @@ uploadRouter.get('/home', (req, res) => {
   //const pic2 = req.;
   // console.log(pic2);
   const pic = '/images/a7b63fb3-3bb4-4fb5-89e0-39317d6ff629.png'
-  res.render('index', { pic: pic });
+  res.render('index', { pic: pic, photos: photos });
 }); // homepage- "IMAGE Upload" form at localhost/upload/home
 
 // Gets All Photos

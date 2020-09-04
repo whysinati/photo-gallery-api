@@ -29,8 +29,16 @@
         <button type="submit" name="upload">Upload</button>
       </form>
 
-      <!-- <img id="photo" src='/images/a7b63fb3-3bb4-4fb5-89e0-39317d6ff629.png'></img> -->
-      <img id="photo" src='<%= pic %>'></img>
+
+      <h4>Gallery</h4>
+      <ul class="list-group">
+        <% for(let i=0; i<photos.length; i++){ %>
+            <li><%= photos[i].title %>: <%= photos[i].description %> -- <%= photos[i].category %>
+                hash: <%= photos[i].id %> original: <%= photos[i].origname %>
+            <img src="/images/<%= photos[i].id %>.png">
+            </li>
+            <% } %>
+      </ul>
       
 
 </body>
